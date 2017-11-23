@@ -8,9 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by charles on 2017/5/25.
- */
 @Configuration
 @EnableConfigurationProperties(ShuntProperties.class)
 public class ShuntAutoConfiguration {
@@ -26,6 +23,7 @@ public class ShuntAutoConfiguration {
     @Bean
     public TagMetadataRule getTagMetadataRule(ShuntProperties shuntProperties) {
         TagHolder.X_TAG_NAME = shuntProperties.getTag();
+        WeightMetadataRule.META_DATA_KEY_WEIGHT = shuntProperties.getWeight();
         return new TagMetadataRule();
     }
 

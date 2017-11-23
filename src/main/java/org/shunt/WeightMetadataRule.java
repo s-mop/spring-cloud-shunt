@@ -1,6 +1,5 @@
 package org.shunt;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +16,7 @@ import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
  */
 public class WeightMetadataRule extends ZoneAvoidanceRule {
 
-    public static final String META_DATA_KEY_WEIGHT = "weight";
-
-    private Random random = new Random();
+    public static String META_DATA_KEY_WEIGHT = "weight";
 
     @Override
     public Server choose(Object key) {
@@ -52,7 +49,7 @@ public class WeightMetadataRule extends ZoneAvoidanceRule {
         }
 
         // 权重随机
-        int randomWight = this.random.nextInt(totalWeight);
+        int randomWight = new Random().nextInt(totalWeight);
         int current = 0;
         for (Map.Entry<Server, Integer> entry : serverWeightMap.entrySet()) {
             current += entry.getValue();

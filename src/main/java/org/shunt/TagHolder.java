@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 
-
 /**
  * @author GuoXinYuan
  *
@@ -16,7 +15,7 @@ import org.springframework.http.HttpRequest;
 public class TagHolder {
     @Autowired
     ShuntProperties shuntProperties;
-    
+
     public static String X_TAG_NAME = "x-tag";
 
     private static final ThreadLocal<Map<String, String>> X_TAG_MAP = new ThreadLocal<>();
@@ -32,7 +31,7 @@ public class TagHolder {
     public static void putHeader(HttpServletRequest req) {
         put(X_TAG_NAME, req.getHeader(X_TAG_NAME));
     }
-    
+
     public static void getHeader(HttpRequest req) {
         Map<String, String> map = X_TAG_MAP.get();
         if (map != null) {
