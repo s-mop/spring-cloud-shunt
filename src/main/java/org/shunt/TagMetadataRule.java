@@ -7,18 +7,20 @@ import java.util.Random;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
+import com.netflix.loadbalancer.WeightedResponseTimeRule;
 import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
 
 /**
  * @author GuoXinYuan
  *
  */
-public class TagMetadataRule extends WeightMetadataRule {
+public class TagMetadataRule extends WeightedResponseTimeRule {
 
     @Override
-    public Server choose(Object key) {
-        List<Server> serverList = this.getPredicate().getEligibleServers(this.getLoadBalancer().getAllServers(), key);
+    public Server choose(ILoadBalancer lb, Object key) {
+        List<Server> serverList = lb.getAllServers();
         if (CollectionUtils.isEmpty(serverList)) {
             return null;
         }

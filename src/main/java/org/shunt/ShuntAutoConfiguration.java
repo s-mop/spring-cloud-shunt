@@ -23,7 +23,6 @@ public class ShuntAutoConfiguration {
     @Bean
     public TagMetadataRule getTagMetadataRule(ShuntProperties shuntProperties) {
         TagHolder.X_TAG_NAME = shuntProperties.getTag();
-        WeightMetadataRule.META_DATA_KEY_WEIGHT = shuntProperties.getWeight();
         return new TagMetadataRule();
     }
 
